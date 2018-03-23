@@ -268,7 +268,8 @@ public final class CommonUtils {
     public static boolean hasWhitespaceBefore(int index, String line) {
         boolean result = true;
         for (int i = 0; i < index; i++) {
-            if (!Character.isWhitespace(line.charAt(i))) {
+            // Not using Character class here anymore due to a Java platform issue (see CST-12345)
+            if (line.charAt(i) != ' ') {
                 result = false;
                 break;
             }
